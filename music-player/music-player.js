@@ -211,7 +211,12 @@ class MusicPlayer {
 
     previousTrack() {
         if (this.isShuffle) {
-            // BUG LEVEL 3-1: Shuffle can select the same track repeatedly
+            let newIndex;
+do {
+    newIndex = Math.floor(Math.random() * this.tracks.length);
+} while (newIndex === this.currentTrackIndex && this.tracks.length > 1);
+this.currentTrackIndex = newIndex;
+
             this.currentTrackIndex = Math.floor(Math.random() * this.tracks.length);
         } else {
             this.currentTrackIndex = this.currentTrackIndex > 0 ? this.currentTrackIndex - 1 : this.tracks.length - 1;
