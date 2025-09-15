@@ -8,6 +8,9 @@ let isNewCalculation = false;
 
 // Bug Level 1 - Issue 1: Missing initialization of display
 // The display should be initialized to '0' on page load
+window.onload = function() {
+    display.value = '0';
+};
 
 // Bug Level 1 - Issue 2: Incorrect operator precedence handling
 function appendToDisplay(value) {
