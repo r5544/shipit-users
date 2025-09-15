@@ -73,9 +73,13 @@ function createTaskElement(task) {
     // Level 3 Bug 2: Date formatting issues with invalid dates
     let dueDateText = '';
     if (task.dueDate) {
-        const date = new Date(task.dueDate + 'T' + task.dueTime);
-        dueDateText = date.toLocaleDateString(); // Bug: Doesn't handle invalid dates
-    }
+        const dateString = task.dueTime ? task.dueDate + 'T' + task.dueTime : task.dueDate;
+        const date = new Date(dateString);
+        if (!isNaN(date)) {
+            dueDateText = date.toLocaleDateString();
+        }
+}
+
     
     taskDiv.innerHTML = `
         <div class="flex items-center justify-between">
