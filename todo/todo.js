@@ -140,15 +140,17 @@ function deleteTask(id) {
 
 function filterTasks(filter) {
     currentFilter = filter;
-    
-    // Level 4 Bug 2: Filter buttons don't update active state properly
-    // Bug: Active class management is broken
+
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active');
     });
-    
+
+    const activeBtn = document.querySelector(`.filter-btn[data-filter="${filter}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+
     renderTasks();
 }
+
 
 function sortTasks(sortBy) {
     currentSort = sortBy;
